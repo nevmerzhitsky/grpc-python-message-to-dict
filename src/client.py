@@ -9,7 +9,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 def main():
     with grpc.insecure_channel('gpm2d-server:50051') as channel:
-        stub = test_pb2_grpc.DatabaseToolsStub(channel)
+        stub = test_pb2_grpc.TestApiStub(channel)
 
         print('### EmptyFunc')
         stub.EmptyFunc(empty_pb2.Empty())

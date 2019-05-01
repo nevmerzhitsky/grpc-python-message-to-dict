@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-service DatabaseTools {
+service TestApi {
     rpc EmptyFunc(google.protobuf.Empty) returns (google.protobuf.Empty) {}
     rpc ManyFieldsFunc(ManyFields) returns (google.protobuf.Empty) {}
     rpc ManyFieldsListFunc(ManyFieldsList) returns (google.protobuf.Empty) {}

@@ -12,7 +12,7 @@ from tools import message_to_dict
 
 def grpc_server_start() -> None:
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    test_pb2_grpc.add_DatabaseToolsServicer_to_server(DatabaseToolsServicer(), server)
+    test_pb2_grpc.add_TestApiServicer_to_server(TestApiServicer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
 
@@ -25,7 +25,7 @@ def grpc_server_start() -> None:
         server.stop(0)
 
 
-class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
+class TestApiServicer(test_pb2_grpc.TestApiServicer):
     def EmptyFunc(self, request, context):
         print('### EmptyFunc')
         print('request:')
