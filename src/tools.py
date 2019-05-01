@@ -46,9 +46,9 @@ def message_to_dict(message_table: Message, set_default_values: bool = True) -> 
 
     result = {}
     if len(message_table.DESCRIPTOR.oneofs_by_name.items()):
-        result['which_oneof'] = {}
+        result['which_one_of'] = {}
         for k, v in message_table.DESCRIPTOR.oneofs_by_name.items():
-            result['which_oneof'][k] = message_table.WhichOneof(k)
+            result['which_one_of'][k] = message_table.WhichOneof(k)
 
     for field_name, field_descriptor in message_table.DESCRIPTOR.fields_by_name.items():
         value = get_actual_field_value(field_name)
