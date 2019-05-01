@@ -7,14 +7,14 @@ from google.protobuf.pyext._message import RepeatedCompositeContainer, MessageMa
 from google.protobuf.timestamp_pb2 import Timestamp
 
 
-def message_to_dict(message_table: Message, set_default_values: bool = True) -> Dict[str, Any]:
+def message_to_dict(message_table: Message, set_default_values: bool = True) -> Dict[str]:
     """
     The function is not tested to work with fields of google.protobuf.Struct etc.
     Function converts 'amount' field_descriptor from string to Decimal and Timestamp fields
     to datetime.
     """
 
-    def pythonify_value(field_name: str, field_value: Any) -> Any:
+    def pythonify_value(field_name: str, field_value):
         if isinstance(field_value, Timestamp):
             return field_value.ToDatetime()
         if isinstance(field_value, str) and field_name == 'amount':
@@ -22,7 +22,7 @@ def message_to_dict(message_table: Message, set_default_values: bool = True) -> 
 
         return field_value
 
-    def get_actual_field_value(field_name: str) -> Any:
+    def get_actual_field_value(field_name: str):
         for field_descriptor, field_value in message_table.ListFields():
             if field_descriptor.name == field_name:
                 if isinstance(field_value, RepeatedCompositeContainer):
