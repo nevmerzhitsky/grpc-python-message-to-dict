@@ -1,4 +1,7 @@
-# A converter Protobuf 3 messages to a Python dictionary
+# A converter of proto3 messages to a Python dictionary
+
+It can be terrible to work with ProtoBuffers 3 messages in read-only mode. This solution simplify
+this task by converting and kind of message to a well-known Python dictionary.
 
 It use Docker for demonstration: just run `build-and-run.sh`. It will output a server and a client
 logs to STDOUT. You will see how the server converts input messages to dictionaries.
