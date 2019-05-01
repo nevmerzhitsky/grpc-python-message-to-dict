@@ -57,6 +57,7 @@ def message_to_dict(message_table: Message, set_default_values: bool = True) -> 
             if not set_default_values:
                 continue
 
+            # Any composite type has a default value as empty list, but we want a dict for the map
             if is_map_type_field(field_descriptor):
                 value = {}
             else:
