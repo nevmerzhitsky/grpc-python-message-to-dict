@@ -7,7 +7,7 @@ import test_pb2
 import test_pb2_grpc
 from google.protobuf import struct_pb2
 
-from tools import message_to_dict
+from converter import message_to_dict
 
 
 def grpc_server_start() -> None:

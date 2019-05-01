@@ -3,4 +3,4 @@
 It use Docker for demonstration: just run `build-and-run.sh`. It will output a server and a client
 logs to STDOUT. You will see how the server converts input messages to dictionaries.
 
-To re-use the solution just copy-paste content of `tools.py` module.
+To re-use the solution just copy-paste content of `converter.py` module.
