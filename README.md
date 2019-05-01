@@ -1,4 +1,4 @@
-# A converter of proto3 messages to a Python dictionary
+# A converter of proto3 message to a Python dictionary
 
 It can be terrible to work with ProtoBuffers 3 messages in a read-only mode. This solution simplify
 this task by converting any kind of message to a well-known Python dictionary.
