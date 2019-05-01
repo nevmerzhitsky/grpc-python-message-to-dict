@@ -7,3 +7,6 @@ It uses Docker for demonstration: just run `build-and-run.sh`. It will output a 
 logs to STDOUT. You will see how the server converts input messages to dictionaries.
 
 To re-use the solution just copy-paste the content of `converter.py` module.
+
+Note that `converter.message_to_dict.pythonify_value()` contains specific conditions for casting.
+You can remove them or extend.
