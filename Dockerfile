@@ -6,7 +6,9 @@ COPY docker-main.sh /docker/
 WORKDIR /var/app/src
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN set -ex; \
+    pip install --upgrade pip; \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY src/ .
 
