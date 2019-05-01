@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-docker rm -f client server
+docker rm -f gpm2d-client gpm2d-server
 
-docker network create intercept
+docker network create grpc-python-message-to-dict
 
-docker build -t intercept .
+docker build -t grpc-python-message-to-dict .
 
-docker run -d --name server --network intercept intercept
-docker run -d --name client --network intercept intercept client.py
+common_command="docker run -d --network grpc-python-message-to-dict"
+${common_command} --name gpm2d-server grpc-python-message-to-dict
+${common_command} --name gpm2d-client grpc-python-message-to-dict client.py
+CLIENT_PID=$?
+wait ${CLIENT_PID}
 
-docker logs -t server
+docker logs -t gpm2d-server
 echo ''
-docker logs -t client
+docker logs -t gpm2d-client

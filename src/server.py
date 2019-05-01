@@ -31,7 +31,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 
@@ -40,7 +40,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 
@@ -49,7 +49,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 
@@ -58,7 +58,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 
@@ -67,7 +67,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 
@@ -76,7 +76,7 @@ class DatabaseToolsServicer(test_pb2_grpc.DatabaseToolsServicer):
         print('request:')
         pprint(request)
         params = message_to_dict(request)
-        print('params:')
+        print('dict:')
         pprint(params)
         return struct_pb2.Value()
 

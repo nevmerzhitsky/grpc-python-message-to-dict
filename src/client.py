@@ -6,11 +6,9 @@ import test_pb2_grpc
 from google.protobuf import empty_pb2
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from tools import message_to_dict
-
 
 def main():
-    with grpc.insecure_channel('server:50051') as channel:
+    with grpc.insecure_channel('gpm2d-server:50051') as channel:
         stub = test_pb2_grpc.DatabaseToolsStub(channel)
 
         print('### EmptyFunc')
