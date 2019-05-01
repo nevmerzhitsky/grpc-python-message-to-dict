@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service DatabaseTools {
+    rpc EmptyFunc(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc ManyFieldsFunc(ManyFields) returns (google.protobuf.Empty) {}
+    rpc ManyFieldsListFunc(ManyFieldsList) returns (google.protobuf.Empty) {}
+    rpc FieldsWithEnumFunc(FieldsWithEnum) returns (google.protobuf.Empty) {}
+    rpc OneofFieldsFunc(OneofFields) returns (google.protobuf.Empty) {}
+    rpc MapFieldsFunc(MapFields) returns (google.protobuf.Empty) {}
+}
+
+message ManyFields {
+    bool a_bool = 1;
+    int64 int_32 = 2;
+    int64 int_64 = 3;
+    google.protobuf.Timestamp ts = 4;
+    string a_str = 5;
+}
+
+message ManyFieldsList {
+    repeated ManyFields records = 1;
+}
+
+enum TestEnum {
+    UNIVERSAL = 0;
+    WEB = 1;
+    IMAGES = 2;
+    LOCAL = 3;
+}
+
+message FieldsWithEnum {
+    int64 int_32 = 1;
+    TestEnum e_num = 2;
+}
+
+message OneofFields {
+    oneof test_oneof1 {
+        bool a_bool = 1;
+        int64 int_32 = 2;
+    };
+    oneof test_oneof2 {
+        int64 int_64 = 3;
+        google.protobuf.Timestamp ts = 4;
+        string a_str = 5;
+    };
+}
+
+message MapFields {
+    map<int32, ManyFields> records = 1;
+}
