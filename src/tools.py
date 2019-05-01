@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import Dict, Any
 
+from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
 from google.protobuf.pyext._message import RepeatedCompositeContainer, MessageMapContainer
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -33,6 +34,16 @@ def message_to_dict(message_table: Message, set_default_values: bool = True) -> 
 
         return None
 
+    def is_map_type_field(field_descriptor: FieldDescriptor) -> bool:
+        if field_descriptor.label != FieldDescriptor.LABEL_REPEATED:
+            return False
+        if field_descriptor.message_type is None:
+            return False
+        if not field_descriptor.message_type.GetOptions().map_entry:
+            return False
+
+        return True
+
     result = {}
     if len(message_table.DESCRIPTOR.oneofs_by_name.items()):
         result['which_oneof'] = {}
@@ -46,8 +57,10 @@ def message_to_dict(message_table: Message, set_default_values: bool = True) -> 
             if not set_default_values:
                 continue
 
-            # @TODO How to handle the map type to set default value to the dict instead of the list?
-            value = field_descriptor.default_value
+            if is_map_type_field(field_descriptor):
+                value = {}
+            else:
+                value = field_descriptor.default_value
 
         result[field_name] = value
 
