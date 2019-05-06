@@ -1,9 +1,9 @@
 from decimal import Decimal
-from typing import Dict, Any
+from typing import Any, Dict
 
 from google.protobuf.descriptor import FieldDescriptor
 from google.protobuf.message import Message
-from google.protobuf.pyext._message import RepeatedCompositeContainer, MessageMapContainer
+from google.protobuf.pyext._message import MessageMapContainer, RepeatedCompositeContainer
 from google.protobuf.timestamp_pb2 import Timestamp
 
 
