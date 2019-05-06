@@ -14,5 +14,4 @@ COPY src/ .
 
 RUN python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. test.proto
 
-ENTRYPOINT ["bash", "/docker/docker-main.sh"]
-CMD ["server.py"]
+CMD ["bash", "/docker/docker-main.sh"]

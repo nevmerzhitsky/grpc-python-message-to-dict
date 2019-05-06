@@ -16,6 +16,6 @@ term_handler() {
 
 trap 'term_handler' SIGTERM
 
-python -u $1 &
+python -u demo.py &
 TASK_PID=$!
 wait "$TASK_PID"

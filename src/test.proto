@@ -3,15 +3,6 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-service TestApi {
-    rpc EmptyFunc(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc ManyFieldsFunc(ManyFields) returns (google.protobuf.Empty) {}
-    rpc ManyFieldsListFunc(ManyFieldsList) returns (google.protobuf.Empty) {}
-    rpc FieldsWithEnumFunc(FieldsWithEnum) returns (google.protobuf.Empty) {}
-    rpc OneofFieldsFunc(OneofFields) returns (google.protobuf.Empty) {}
-    rpc MapFieldsFunc(MapFields) returns (google.protobuf.Empty) {}
-}
-
 message ManyFields {
     bool a_bool = 1;
     int64 int_32 = 2;
