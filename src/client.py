@@ -2,66 +2,69 @@ from pprint import pprint
 
 import grpc
 import test_pb2
-import test_pb2_grpc
 from google.protobuf import empty_pb2
+from google.protobuf.json_format import MessageToDict
 from google.protobuf.timestamp_pb2 import Timestamp
+
+from converter import message_to_dict
 
 
 def main():
     with grpc.insecure_channel('gpm2d-server:50051') as channel:
-        stub = test_pb2_grpc.TestApiStub(channel)
+        print('\n### empty_pb2.Empty')
+        request = empty_pb2.Empty()
+        dump_request(request)
 
-        print('### EmptyFunc')
-        stub.EmptyFunc(empty_pb2.Empty())
-
-        print('### ManyFieldsFunc')
+        print('\n### ManyFields')
         ts = Timestamp()
         ts.GetCurrentTime()
         request = test_pb2.ManyFields(a_bool=True, int_32=1, int_64=112233, ts=ts, a_str='abc')
-        pprint(request)
-        stub.ManyFieldsFunc(request)
+        dump_request(request)
 
-        print('### ManyFieldsListFunc')
+        print('\n### ManyFieldsList with data')
         request = test_pb2.ManyFieldsList()
         for i in range(2):
             ts = Timestamp()
             ts.GetCurrentTime()
             record = test_pb2.ManyFields(a_bool=True, int_32=i, int_64=112233, ts=ts, a_str='abc')
             request.records.extend([record])
-        pprint(request)
-        stub.ManyFieldsListFunc(request)
+        dump_request(request)
 
-        print('### ManyFieldsListFunc empty')
+        print('\n### ManyFieldsList empty')
         request = test_pb2.ManyFieldsList()
-        pprint(request)
-        stub.ManyFieldsListFunc(request)
+        dump_request(request)
 
-        print('### FieldsWithEnumFunc')
+        print('\n### FieldsWithEnum')
         ts = Timestamp()
         ts.GetCurrentTime()
         request = test_pb2.FieldsWithEnum(int_32=1, e_num=test_pb2.TestEnum.Value('IMAGES'))
-        pprint(request)
-        stub.FieldsWithEnumFunc(request)
+        dump_request(request)
 
-        print('### OneofFieldsFunc')
+        print('\n### OneofFields')
         request = test_pb2.OneofFields(a_bool=True, a_str='abc100500')
-        pprint(request)
-        stub.OneofFieldsFunc(request)
+        dump_request(request)
 
-        print('### MapFieldsFunc')
+        print('\n### MapFields with data')
         request = test_pb2.MapFields()
         for i in range(2):
             request.records[i].a_bool = True
             request.records[i].int_32 = i
             request.records[i].int_64 = 112233
             request.records[i].a_str = 'abc'
-        pprint(request)
-        stub.MapFieldsFunc(request)
+        dump_request(request)
 
-        print('### MapFieldsFunc empty')
+        print('\n### MapFields empty')
         request = test_pb2.MapFields()
-        pprint(request)
-        stub.MapFieldsFunc(request)
+        dump_request(request)
+
+
+def dump_request(request):
+    print('request:')
+    pprint(request)
+    print('json_format.MessageToDict:')
+    pprint(MessageToDict(request, True, True, True))
+    print('\nmessage_to_dict:')
+    pprint(message_to_dict(request))
 
 
 if __name__ == '__main__':
